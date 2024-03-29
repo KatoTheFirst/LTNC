@@ -14,14 +14,10 @@ vector<string> split(const string &);
  */
 
 string balancedSums(vector<int> arr) {
-    for (int i = 0; i < (int)arr.size(); i++) {
-        int sum1 = 0, sum2 = 0;
-        for (int j = 0; j < i; j++) {
-            sum1 += arr[j];
-        }
-        for (int j = i + 1; j < (int)arr.size(); j++) {
-            sum2 += arr[j];
-        }
+    int sum1 = 0, sum2 = accumulate(arr.begin(), arr.end(), 0);
+    for (int i = 0; i < int(arr.size()); i++) {
+        sum2 -= arr[i];
+        if (i != 0) sum1 += arr[i - 1];
         if (sum1 == sum2) return "YES";
     }
     return "NO";
@@ -103,4 +99,3 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
-
